@@ -1,6 +1,53 @@
+
+# 📚 Library Management System
+
+A responsive Library Management System built using HTML, CSS, and vanilla JavaScript.
+
+## 🚀 Live Demo
+
+[**View the Live Website**](https://abhaysharma-max.github.io/library-management-system/)
+
+## 📸 Screenshots
+
+### LibraryHub Dashboard
+
+![LibraryHub Dashboard](screenshots/libraryhub-dashboard.png)
+
+## ✨ Features
+
+- Add and delete books
+- Search books by title or author
+- Filter books by availability
+- Issue and return books
+- Dashboard statistics
+- Persistent storage using localStorage
+- Responsive design
+
+## 🛠️ Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+- Browser localStorage
+
+## 💻 Run Locally
+
+1. Clone this repository.
+2. Open `index.html` in your browser.
+3. Start managing your book collection.
 # Library Management System
 
 A responsive, browser-based Library Management System built with **HTML, CSS, and vanilla JavaScript**. It lets users maintain a small book catalog, search the collection, and track whether books are available or issued.
+
+
+## 📸 Screenshots
+
+### Dashboard
+![LibraryHub Dashboard](screenshots/libraryhub-dashboard.png)
+
+### Live Demo
+[**Open Library Management System**](https://abhaysharma-max.github.io/library-management-system/)
+
 
 ## Live Demo
 
