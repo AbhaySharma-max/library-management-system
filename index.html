@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A responsive Library Management System built with HTML, CSS, and vanilla JavaScript.">
+  <title>LibraryHub | Library Management System</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="LibraryHub home">
+      <span class="brand-icon">L</span>
+      <span>Library<span class="brand-light">Hub</span></span>
+    </a>
+    <p class="nav-label">WORKSPACE</p>
+    <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+    <a class="nav-link" href="#catalog"><span>▤</span> Book catalog</a>
+    <a class="nav-link" href="#add-book"><span>＋</span> Add a book</a>
+    <div class="sidebar-note">
+      <div class="note-icon">✦</div>
+      <strong>Your library, organized.</strong>
+      <p>Keep your collection in one simple place.</p>
+    </div>
+    <div class="sidebar-footer">LIBRARY MANAGEMENT<br><span>Vanilla HTML · CSS · JS</span></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LIBRARY WORKSPACE</p>
+        <h1>Good day, Librarian <span class="wave">✦</span></h1>
+        <p class="subtitle">Manage your books and keep your collection up to date.</p>
+      </div>
+      <div class="today-chip"><span class="live-dot"></span> Local library</div>
+    </header>
+
+    <section id="overview" class="stats-grid" aria-label="Library statistics">
+      <article class="stat-card">
+        <div class="stat-top"><span class="stat-label">Total books</span><span class="stat-icon purple">▤</span></div>
+        <p class="stat-value" id="totalBooks">0</p>
+        <p class="stat-foot">Books in your collection</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-top"><span class="stat-label">Available</span><span class="stat-icon green">✓</span></div>
+        <p class="stat-value" id="availableBooks">0</p>
+        <p class="stat-foot">Ready to be issued</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-top"><span class="stat-label">Currently issued</span><span class="stat-icon orange">↗</span></div>
+        <p class="stat-value" id="issuedBooks">0</p>
+        <p class="stat-foot">With readers right now</p>
+      </article>
+    </section>
+
+    <section id="add-book" class="panel add-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">COLLECTION</p>
+          <h2>Add a new book</h2>
+        </div>
+        <span class="heading-mark">＋</span>
+      </div>
+      <form id="bookForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="title">Book title <span class="required">*</span></label>
+            <input id="title" name="title" type="text" maxlength="120" placeholder="e.g. The Alchemist" required>
+          </div>
+          <div class="field">
+            <label for="author">Author <span class="required">*</span></label>
+            <input id="author" name="author" type="text" maxlength="100" placeholder="e.g. Paulo Coelho" required>
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option>Fiction</option><option>Science</option><option>Technology</option>
+              <option>History</option><option>Education</option><option>Biography</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bookCode">Book ID / ISBN <span class="required">*</span></label>
+            <input id="bookCode" name="bookCode" type="text" maxlength="40" placeholder="e.g. BK-104" required>
+          </div>
+        </div>
+        <div class="form-actions">
+          <p class="form-hint"><span class="required">*</span> Required fields</p>
+          <button class="button primary" type="submit"><span>＋</span> Add book</button>
+        </div>
+      </form>
+      <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="catalog" class="panel catalog-panel">
+      <div class="catalog-heading">
+        <div>
+          <p class="eyebrow">YOUR COLLECTION</p>
+          <h2>Book catalog <span id="bookCount" class="count-pill">0</span></h2>
+        </div>
+        <div class="catalog-tools">
+          <label class="search-box" for="searchInput"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search title or author..." autocomplete="off"></label>
+          <select id="statusFilter" class="filter-select" aria-label="Filter books by status">
+            <option value="all">All status</option>
+            <option value="available">Available</option>
+            <option value="issued">Issued</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>BOOK DETAILS</th><th>CATEGORY</th><th>BOOK ID</th><th>STATUS</th><th class="actions-head">ACTIONS</th></tr></thead>
+          <tbody id="bookList"></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-state" hidden>
+        <div class="empty-icon">▤</div>
+        <h3>No books found</h3>
+        <p>Try another search or add a book to your collection.</p>
+      </div>
+      <div class="catalog-footer"><span id="resultsText">Showing 0 books</span><span>Changes are saved in this browser</span></div>
+    </section>
+
+    <footer class="page-footer">LibraryHub <span>•</span> Built with HTML, CSS and JavaScript</footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="deleteDialog" class="confirm-dialog">
+    <form method="dialog">
+      <div class="dialog-icon">!</div>
+      <h2>Delete this book?</h2>
+      <p id="deleteMessage">This book will be removed from your collection.</p>
+      <div class="dialog-actions">
+        <button class="button secondary" value="cancel">Cancel</button>
+        <button id="confirmDelete" class="button danger" value="confirm">Delete book</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
