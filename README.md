@@ -11,7 +11,7 @@ A responsive Library Management System built using HTML, CSS, and vanilla JavaSc
 
 ### LibraryHub Dashboard
 
-![LibraryHub Dashboard](screenshots/libraryhub-dashboard.png)
+![LibraryHub Dashboard](libraryhub-dashboard.png)
 
 ## ✨ Features
 
